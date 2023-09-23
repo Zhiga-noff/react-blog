@@ -13,7 +13,19 @@
 
 Таблицы БД:
 
-- Пользователи - users: id / login / password / registed_at / role_id
+- Пользователи - users: id / login / password / registered_at / role_id
 - Роли - roles: id / name
 - Статьи - posts: id / title / image_url / content / published_at
 - Коммантарии - comments: id / author_id / post_id / content
+
+Схема состояния на BFF:
+
+- Сессия текущего пользователя: login / password / role
+
+Схема для redux store (на клиенте):
+
+- user: id / login / roleId
+- posts: массив post: id / title / imageUrl / publishedAt / commentsCount
+- post: id / title / imageUrl / content / publishedAt / comments: массив comment: id / author / content / publishedAt
+- users: массив user: id / login / registeredAt / role
+-
