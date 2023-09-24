@@ -1,9 +1,10 @@
+import { getUser } from './get-user';
+import { addUser } from './add-user';
+import { createSession } from './create-session';
+
 export const sever = {
   async authorization(authLogin, authPassword) {
-    const users = await fetch('http://localhost3005/users').then((loadedUsers) =>
-      loadedUsers.json(),
-    );
-    const user = users.find(({ login }) => login === authLogin);
+    const user = getUser(authLogin);
     if (!user) {
       return {
         error: 'Такой пользователь не найден',
@@ -16,19 +17,23 @@ export const sever = {
         response: null,
       };
     }
-    const session = {
-      logout() {
-        Object.keys(session).forEach((key) => {
-          delete session[key];
-        });
-      },
-      removeComment() {
-        console.log('Удаление комментария');
-      },
-    };
     return {
       error: null,
-      response: session,
+      response: createSession(user.role_id),
+    };
+  },
+  async registration(regLogin, regPassword) {
+    const user = getUser(regLogin);
+    if (user) {
+      return {
+        error: 'Такой логин уже занят',
+        response: null,
+      };
+    }
+    await addUser(regLogin, regPassword);
+    return {
+      error: null,
+      response: createSession(user.role_id),
     };
   },
 };
