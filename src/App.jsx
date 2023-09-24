@@ -3,12 +3,12 @@ import styled from 'styled-components';
 const Div = styled.div`
   text-align: center;
 `;
-
 export const App = () => {
   return (
     <Div>
-      <i class="fa fa-camera-retro fa-5x"></i>
+      <i className="fa fa-camera-retro fa-5x"></i>
       <div>123</div>
+      <br />
     </Div>
   );
 };
