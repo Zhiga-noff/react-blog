@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
-import { Header } from './components';
+import { Footer, Header } from './components';
 
 const Content = styled.div`
   padding: 120px 0;
@@ -20,10 +20,6 @@ const AppColumn = styled.div`
   margin: 0 auto;
 `;
 
-export const Footer = () => {
-  return <footer>Футтер</footer>;
-};
-
 export const Blog = () => {
   return (
     <AppColumn>
@@ -41,6 +37,7 @@ export const Blog = () => {
           <Route path={'*'} element={<div>Ошибка</div>} />
         </Routes>
       </Content>
+
       <Footer />
     </AppColumn>
   );

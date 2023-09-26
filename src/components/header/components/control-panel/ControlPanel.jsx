@@ -51,9 +51,3 @@ const ControlPanelContainer = ({ className }) => {
 };
 
 export const ControlPanel = styled(ControlPanelContainer)``;
-
-fetch(
-  'https://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&lang=ru&appid=8aefa63524eff2979c790f4d780328ec',
-)
-  .then((data) => data.json())
-  .then(console.log);
