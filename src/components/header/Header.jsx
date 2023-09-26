@@ -1,10 +1,22 @@
 import styled from 'styled-components';
-import { Logo } from './components';
+import { ControlPanel, Logo } from './components';
+
+const Discription = styled.div`
+  font-style: italic;
+`;
 
 const HeaderContainer = ({ className }) => {
   return (
     <header className={className}>
       <Logo />
+      <Discription>
+        Веб-технологии
+        <br />
+        Написание кода
+        <br />
+        Разбор ошибок
+      </Discription>
+      <ControlPanel />
     </header>
   );
 };
@@ -18,4 +30,8 @@ export const Header = styled(HeaderContainer)`
   top: 0;
   background-color: white;
   width: 1000px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
