@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
+import { Header } from './components';
 
 const Content = styled.div`
   padding: 120px 0;
@@ -19,13 +20,6 @@ const AppColumn = styled.div`
   margin: 0 auto;
 `;
 
-export const Header = ({ className }) => {
-  return <header className={className}>Шапка</header>;
-};
-
-const StyledHeader = styled(Header)`
-  height: 120px;
-`;
 export const Footer = () => {
   return <footer>Футтер</footer>;
 };
@@ -33,7 +27,7 @@ export const Footer = () => {
 export const Blog = () => {
   return (
     <AppColumn>
-      <StyledHeader />
+      <Header />
 
       <Content>
         <H2>Контент страницы</H2>
