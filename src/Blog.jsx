@@ -7,9 +7,6 @@ const Content = styled.div`
   padding: 120px 0;
 `;
 
-const H2 = styled.h2`
-  text-align: center;
-`;
 
 const AppColumn = styled.div`
   display: flex;
@@ -27,7 +24,6 @@ export const Blog = () => {
       <Header />
 
       <Content>
-        <H2>Контент страницы</H2>
         <Routes>
           <Route path={'/'} element={<div>Главная страница</div>} />
           <Route path={'/login'} element={<Authorization/>} />
