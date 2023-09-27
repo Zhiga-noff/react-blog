@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Header } from './components';
+import { Authorization } from './pages/authorization/Authorization';
 
 const Content = styled.div`
   padding: 120px 0;
@@ -29,7 +30,7 @@ export const Blog = () => {
         <H2>Контент страницы</H2>
         <Routes>
           <Route path={'/'} element={<div>Главная страница</div>} />
-          <Route path={'/login'} element={<div>Авторизация</div>} />
+          <Route path={'/login'} element={<Authorization/>} />
           <Route path={'/register'} element={<div>Регистрация</div>} />
           <Route path={'/users'} element={<div>Пользователи</div>} />
           <Route path={'/post'} element={<div>Новая статья</div>} />
