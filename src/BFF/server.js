@@ -4,13 +4,12 @@ import { createSession } from './create-session';
 
 export const server = {
   async authorization(authLogin, authPassword) {
-    const user = getUser(authLogin);
+    const user = await getUser(authLogin);
     if (!user) {
-      // return {
-      //   error: 'Такой пользователь не найден',
-      //   response: null,
-      // };
-      console.log(authLogin);
+      return {
+        error: 'Такой пользователь не найден',
+        response: null,
+      };
     }
     if (authPassword !== user.password) {
       return {
@@ -24,7 +23,7 @@ export const server = {
     };
   },
   async registration(regLogin, regPassword) {
-    const user = getUser(regLogin);
+    const user = await getUser(regLogin);
     if (user) {
       return {
         error: 'Такой логин уже занят',

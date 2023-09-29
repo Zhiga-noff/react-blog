@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../BFF';
 import styled from 'styled-components';
-import { Button, Input } from '../../components';
+import { Button, H2, Input } from '../../components';
 import { Link } from 'react-router-dom';
 
 const authFormScheme = yup.object().shape({
@@ -53,7 +53,7 @@ const AuthorizationContainer = ({ className }) => {
     resolver: yupResolver(authFormScheme),
   });
 
-  const [serverError, setServerError] = useState();
+  const [serverError, setServerError] = useState(null);
 
   const onSubmit = ({ login, password }) => {
     server.authorization(login, password).then(({ error, response }) => {
@@ -68,10 +68,22 @@ const AuthorizationContainer = ({ className }) => {
 
   return (
     <div className={className}>
-      <h2>Авторизация</h2>
+      <H2>Авторизация</H2>
       <form action="#" onSubmit={handleSubmit(onSubmit)}>
-        <Input type="text" placeholder={'Логин...'} {...register('login')} />
-        <Input type="password" placeholder={'Пароль...'} {...register('password')} />
+        <Input
+          type="text"
+          placeholder={'Логин...'}
+          {...register('login', {
+            onChange: () => setServerError(null),
+          })}
+        />
+        <Input
+          type="password"
+          placeholder={'Пароль...'}
+          {...register('password', {
+            onChange: () => setServerError(null),
+          })}
+        />
         <Button type={'submit'} disabled={!!formError}>
           Авторизоваться
         </Button>
