@@ -1,6 +1,7 @@
 import { getUser } from './get-user';
 import { addUser } from './add-user';
 import { createSession } from './create-session';
+import { sessions } from './sessions';
 
 export const server = {
   async authorization(authLogin, authPassword) {
@@ -17,9 +18,17 @@ export const server = {
         response: null,
       };
     }
+
+    const session = sessions.create();
+    sessions.add(session);
     return {
       error: null,
-      response: createSession(user.role_id),
+      response: {
+        id: user.id,
+        login: user.login,
+        roleId: user.role_id,
+        session: sessions.add(user),
+      },
     };
   },
   async registration(regLogin, regPassword) {
