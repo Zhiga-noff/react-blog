@@ -6,10 +6,11 @@ export const server = {
   async authorization(authLogin, authPassword) {
     const user = getUser(authLogin);
     if (!user) {
-      return {
-        error: 'Такой пользователь не найден',
-        response: null,
-      };
+      // return {
+      //   error: 'Такой пользователь не найден',
+      //   response: null,
+      // };
+      console.log(authLogin);
     }
     if (authPassword !== user.password) {
       return {

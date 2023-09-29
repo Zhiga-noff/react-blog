@@ -2,25 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../../icon/Icon';
 import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '../../../button/Button';
 
 const RightAligned = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
-
-const StyledLink = styled(Link)`
-  font-size: 18px;
-  width: 100px;
-  height: 32px;
-
-  border: 1px solid black;
-  border-radius: 3px;
-
-  background-color: #eee;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const Pointer = styled.div`
@@ -33,7 +19,8 @@ const ControlPanelContainer = ({ className }) => {
   return (
     <div className={className}>
       <RightAligned>
-        <StyledLink to={'/login'}>Войти</StyledLink>
+          <Button><Link to={'/login'}>Войти</Link></Button>
+
       </RightAligned>
       <RightAligned>
         <Pointer onClick={() => navigate(-1)}>
