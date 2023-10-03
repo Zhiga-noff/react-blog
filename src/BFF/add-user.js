@@ -1,7 +1,7 @@
 import { generateDate } from './generate-date';
 
 export const addUser = (login, password) => {
-  return fetch('http://localhost3005/users', {
+  return fetch('http://localhost:3005/users', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json;charset=utf-8',
