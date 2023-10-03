@@ -74,7 +74,6 @@ const RegistrationContainer = ({ className }) => {
         setServerError(`Ошибка запроса: ${error}`);
         return;
       }
-      console.log(response);
       dispatch(setUserAction(response));
     });
   };
