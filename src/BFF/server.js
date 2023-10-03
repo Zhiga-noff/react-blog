@@ -39,8 +39,8 @@ export const server = {
         response: null,
       };
     }
-
-    const user = await addUser(regLogin, regPassword);
+    await addUser(regLogin, regPassword);
+    const user = await getUser(regLogin);
 
     return {
       error: null,

@@ -55,6 +55,20 @@
       "registered_at": "2042-03-04 17:22",
       "role_id": 2,
       "id": "PLBcf4Y"
+    },
+    {
+      "login": "lera",
+      "password": "11421142",
+      "registered_at": "2064-05-27 02:59",
+      "role_id": 2,
+      "id": "SKROk6F"
+    },
+    {
+      "login": "erohin",
+      "password": "11421142",
+      "registered_at": "2042-03-20 16:10",
+      "role_id": 2,
+      "id": "cs0MRDj"
     }
   ],
   "role": [
