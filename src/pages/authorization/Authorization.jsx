@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../BFF';
 import styled from 'styled-components';
 import { Button, H2, Input } from '../../components';
-import { Link } from 'react-router-dom';
-import { setSessionAction } from '../../store/actions';
-import { useDispatch } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { setUserAction } from '../../store/actions';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import { selectUserRole } from '../../store/selectors';
+import { ROLE } from '../../constants';
 
 const authFormScheme = yup.object().shape({
   login: yup
@@ -43,8 +45,12 @@ const ErrorMessage = styled.div`
 `;
 
 const AuthorizationContainer = ({ className }) => {
+  const [serverError, setServerError] = useState(null);
+  const dispatch = useDispatch();
+
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -55,8 +61,22 @@ const AuthorizationContainer = ({ className }) => {
     resolver: yupResolver(authFormScheme),
   });
 
-  const [serverError, setServerError] = useState(null);
-  const dispatch = useDispatch;
+  const store = useStore();
+
+  const roleId = useSelector(selectUserRole);
+
+  useEffect(() => {
+    let currentWasLogout = store.getState().app.wasLogout;
+
+    return store.subscribe(() => {
+      let previousWasLogout = currentWasLogout;
+      currentWasLogout = store.getState().app.wasLogout;
+
+      if (currentWasLogout !== previousWasLogout) {
+        reset();
+      }
+    });
+  }, [reset, store]);
 
   const onSubmit = ({ login, password }) => {
     server.authorization(login, password).then(({ error, response }) => {
@@ -64,12 +84,16 @@ const AuthorizationContainer = ({ className }) => {
         setServerError(`Ошибка запроса: ${error}`);
         return;
       }
-      dispatch(setSessionAction(response));
+      dispatch(setUserAction(response));
     });
   };
 
   const formError = errors?.login?.message || errors?.password?.message;
   const errorMessage = formError || serverError;
+
+  if (roleId !== ROLE.GUEST) {
+    return <Navigate to={'/'}></Navigate>;
+  }
 
   return (
     <div className={className}>
