@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,9 +7,10 @@ import styled from 'styled-components';
 import { Button, FormErrorMessage, H2, Input } from '../../components';
 import { Link, Navigate } from 'react-router-dom';
 import { setUserAction } from '../../store/actions';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUserRole } from '../../store/selectors';
 import { ROLE } from '../../constants';
+import { useResetForm } from '../../hooks';
 
 const authFormScheme = yup.object().shape({
   login: yup
@@ -53,22 +54,9 @@ const AuthorizationContainer = ({ className }) => {
     resolver: yupResolver(authFormScheme),
   });
 
-  const store = useStore();
-
   const roleId = useSelector(selectUserRole);
 
-  useEffect(() => {
-    let currentWasLogout = store.getState().app.wasLogout;
-
-    return store.subscribe(() => {
-      let previousWasLogout = currentWasLogout;
-      currentWasLogout = store.getState().app.wasLogout;
-
-      if (currentWasLogout !== previousWasLogout) {
-        reset();
-      }
-    });
-  }, [reset, store]);
+  useResetForm(reset);
 
   const onSubmit = ({ login, password }) => {
     server.authorization(login, password).then(({ error, response }) => {
