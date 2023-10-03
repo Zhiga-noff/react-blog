@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../BFF';
 import styled from 'styled-components';
-import { Button, H2, Input } from '../../components';
+import { Button, FormErrorMessage, H2, Input } from '../../components';
 import { Link, Navigate } from 'react-router-dom';
 import { setUserAction } from '../../store/actions';
 import { useDispatch, useSelector, useStore } from 'react-redux';
@@ -32,14 +32,6 @@ const regFormScheme = yup.object().shape({
     .required('Заполните повтор пароль')
     .oneOf([yup.ref('password')], 'Повтор пароля не совпадает'),
 });
-
-const ErrorMessage = styled.div`
-  background-color: #fcadad;
-  font-size: 18px;
-  margin-top: 10px;
-  padding: 10px;
-  text-align: center;
-`;
 
 const RegistrationContainer = ({ className }) => {
   const [serverError, setServerError] = useState(null);
@@ -123,7 +115,7 @@ const RegistrationContainer = ({ className }) => {
         <Button type={'submit'} disabled={!!formError}>
           Зарегистрироваться
         </Button>
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {errorMessage && <FormErrorMessage>{errorMessage}</FormErrorMessage>}
       </form>
     </div>
   );

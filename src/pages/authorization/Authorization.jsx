@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../BFF';
 import styled from 'styled-components';
-import { Button, H2, Input } from '../../components';
+import { Button, FormErrorMessage, H2, Input } from '../../components';
 import { Link, Navigate } from 'react-router-dom';
 import { setUserAction } from '../../store/actions';
 import { useDispatch, useSelector, useStore } from 'react-redux';
@@ -34,14 +34,6 @@ const StyledLink = styled(Link)`
   text-decoration: underline;
   margin-top: 20px;
   font-size: 18px;
-`;
-
-const ErrorMessage = styled.div`
-  background-color: #fcadad;
-  font-size: 18px;
-  margin-top: 10px;
-  padding: 10px;
-  text-align: center;
 `;
 
 const AuthorizationContainer = ({ className }) => {
@@ -116,7 +108,7 @@ const AuthorizationContainer = ({ className }) => {
         <Button type={'submit'} disabled={!!formError}>
           Авторизоваться
         </Button>
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {errorMessage && <FormErrorMessage>{errorMessage}</FormErrorMessage>}
         <StyledLink to={'/register'}>Регистрация</StyledLink>
       </form>
     </div>
