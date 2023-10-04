@@ -9,7 +9,10 @@ export const authorization = async (authLogin, authPassword) => {
       response: null,
     };
   }
-  if (authPassword !== user.password) {
+
+  const { id, login, password, roleId } = user;
+
+  if (authPassword !== password) {
     return {
       error: 'Неверный пароль',
       response: null,
@@ -19,9 +22,9 @@ export const authorization = async (authLogin, authPassword) => {
   return {
     error: null,
     response: {
-      id: user.id,
-      login: user.login,
-      roleId: user.role_id,
+      id,
+      login,
+      roleId,
       session: sessions.create(user),
     },
   };

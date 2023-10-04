@@ -1,12 +1,15 @@
-import React from 'react';
 import { Icon } from '../../../../components';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { TableRow } from '../table-row-styled/TableRow';
 
-const UserRowContainer = ({ className, login, registeredAt, roleId: userRoleId }) => {
-  const roles = [];
-
+const UserRowContainer = ({
+  className,
+  roles,
+  login,
+  registeredAt,
+  roleId: userRoleId,
+}) => {
   const dispatch = useDispatch();
 
   const onRoleChange = () => {};

@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Footer, Header } from './components';
 import { Authorization, Registration, Users } from './pages';
 
-const Content = styled.div`
+const Page = styled.div`
   padding: 120px 0;
 `;
 
@@ -22,7 +22,7 @@ export const Blog = () => {
     <AppColumn>
       <Header />
 
-      <Content>
+      <Page>
         <Routes>
           <Route path={'/'} element={<div>Главная страница</div>} />
           <Route path={'/login'} element={<Authorization />} />
@@ -32,7 +32,7 @@ export const Blog = () => {
           <Route path={'/post/:post_id'} element={<div>Статья</div>} />
           <Route path={'*'} element={<div>Ошибка</div>} />
         </Routes>
-      </Content>
+      </Page>
 
       <Footer />
     </AppColumn>
