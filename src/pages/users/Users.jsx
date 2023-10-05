@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { Content, H2 } from '../../components';
 import { TableRow, UserRow } from './components';
 import { useServerRequest } from '../../hooks';
+import { ROLE } from '../../constants';
 
 const UsersContainer = ({ className }) => {
-  const [roles, setRoles] = useState([{}]);
-  const [users, setUsers] = useState([{}]);
+  const [roles, setRoles] = useState([]);
+  const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const requestServer = useServerRequest('fetchRoles');
@@ -35,10 +36,10 @@ const UsersContainer = ({ className }) => {
             <div className={'registered-at-column'}>Дата регистрации</div>
             <div className={'role-column'}>Роль</div>
           </TableRow>
-          {users.map(({ id, login, registered_at: registeredAt, role_id: roleId }) => (
+          {users.map(({ id, login, registeredAt, roleId }) => (
             <UserRow
               key={id}
-              roles={roles}
+              roles={roles.filter(({ roleId }) => roleId !== ROLE.GUEST)}
               login={login}
               registeredAt={registeredAt}
               roleId={roleId}
@@ -57,4 +58,6 @@ export const Users = styled(UsersContainer)`
 
   width: 570px;
   margin: 0 auto;
+
+  font-size: 18px;
 `;

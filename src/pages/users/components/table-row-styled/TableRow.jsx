@@ -7,10 +7,13 @@ const TableRowContainer = ({ children, className }) => {
 
 export const TableRow = styled(TableRowContainer)`
   display: flex;
-
   align-items: center;
 
+  border: ${({ border }) => (border ? '1px solid black' : 'none')};
+  padding-right: ${({ border }) => (border ? '10px' : '0')};
+
   & > div {
+    display: flex;
     padding: 10px;
   }
 
