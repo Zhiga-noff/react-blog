@@ -3,24 +3,34 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { TableRow } from '../table-row-styled/TableRow';
 import { useState } from 'react';
+import { useServerRequest } from '../../../../hooks';
 
 const UserRowContainer = ({
   className,
+  userId,
   roles,
   login,
   registeredAt,
   roleId: userRoleId,
+  onUserDelete,
 }) => {
   const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
+  const [initialRoleId, setInitialRoleId] = useState(userRoleId);
+  const requestServer = useServerRequest();
 
   const dispatch = useDispatch();
 
-  const isSaveButtonDisabled = Number(selectedRoleId) === userRoleId;
-  console.log(typeof userRoleId);
-
   const onRoleChange = ({ target }) => {
-    setSelectedRoleId(target.value);
+    setSelectedRoleId(Number(target.value));
   };
+
+  const onRollSave = (userId, newUserRoleId) => {
+    requestServer('updateUserRole', userId, newUserRoleId).then(() => {
+      setInitialRoleId(newUserRoleId);
+    });
+  };
+
+  const isSaveButtonDisabled = selectedRoleId === initialRoleId;
 
   return (
     <div className={className}>
@@ -36,16 +46,19 @@ const UserRowContainer = ({
             ))}
           </select>
           {
-            <Icon
-              id={'fa-floppy-o'}
-              margin={'0 0 0 10px'}
-              disabled={isSaveButtonDisabled}
-              onClick={() => dispatch(/*TODO*/)}
-            />
+            <div onClick={() => onRollSave(userId, selectedRoleId)}>
+              <Icon
+                id={'fa-floppy-o'}
+                margin={'0 0 0 10px'}
+                disabled={isSaveButtonDisabled}
+              />
+            </div>
           }
         </div>
       </TableRow>
-      <Icon id={'fa-trash-o'} margin={'0 0 0 10px'} onClick={() => dispatch(/*TODO*/)} />
+      <div onClick={() => onUserDelete(userId)}>
+        <Icon id={'fa-trash-o'} margin={'0 0 0 10px'} />
+      </div>
     </div>
   );
 };

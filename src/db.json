@@ -11,7 +11,7 @@
       "login": "vasilii",
       "password": "11421142",
       "registered_at": "2039-11-21 10:06",
-      "role_id": 2,
+      "role_id": 1,
       "id": "BK6ez6E"
     },
     {
@@ -20,62 +20,6 @@
       "registered_at": "2039-06-19 08:53",
       "role_id": 2,
       "id": "NaaJ-au"
-    },
-    {
-      "login": "daria",
-      "password": "11421142",
-      "registered_at": "2049-04-23 13:42",
-      "role_id": 2,
-      "id": "cUQe-cK"
-    },
-    {
-      "login": "oleg",
-      "password": "11421142",
-      "registered_at": "2057-10-22 03:34",
-      "role_id": 2,
-      "id": "ijnpKcV"
-    },
-    {
-      "login": "ivan",
-      "password": "11421142",
-      "registered_at": "2034-08-28 16:15",
-      "role_id": 2,
-      "id": "sfZmMud"
-    },
-    {
-      "login": "nastya",
-      "password": "11421142",
-      "registered_at": "2063-11-05 10:44",
-      "role_id": 2,
-      "id": "p3_wm1E"
-    },
-    {
-      "login": "obama",
-      "password": "11421142",
-      "registered_at": "2042-03-04 17:22",
-      "role_id": 2,
-      "id": "PLBcf4Y"
-    },
-    {
-      "login": "lera",
-      "password": "11421142",
-      "registered_at": "2064-05-27 02:59",
-      "role_id": 2,
-      "id": "SKROk6F"
-    },
-    {
-      "login": "erohin",
-      "password": "11421142",
-      "registered_at": "2042-03-20 16:10",
-      "role_id": 2,
-      "id": "cs0MRDj"
-    },
-    {
-      "login": "anna",
-      "password": "11421142",
-      "registered_at": "2062-08-30 13:54",
-      "role_id": 2,
-      "id": "wXwSwHR"
     }
   ],
   "role": [

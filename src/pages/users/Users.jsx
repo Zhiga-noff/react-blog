@@ -9,8 +9,9 @@ const UsersContainer = ({ className }) => {
   const [roles, setRoles] = useState([]);
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
 
-  const requestServer = useServerRequest('fetchRoles');
+  const requestServer = useServerRequest();
 
   useEffect(() => {
     Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
@@ -24,7 +25,13 @@ const UsersContainer = ({ className }) => {
         setRoles(rolesRes.response);
       },
     );
-  }, [requestServer]);
+  }, [requestServer, shouldUpdateUserList]);
+
+  const onUserDelete = (userId) => {
+    requestServer('removeUser', userId).then(() => {
+      setShouldUpdateUserList((pre) => !pre);
+    });
+  };
 
   return (
     <div className={className}>
@@ -39,10 +46,12 @@ const UsersContainer = ({ className }) => {
           {users.map(({ id, login, registeredAt, roleId }) => (
             <UserRow
               key={id}
-              roles={roles.filter(({ roleId }) => roleId !== ROLE.GUEST)}
+              userId={id}
+              roles={roles.filter(({ id: roleId }) => roleId !== ROLE.GUEST)}
               login={login}
               registeredAt={registeredAt}
               roleId={roleId}
+              onUserDelete={onUserDelete}
             />
           ))}
         </div>
