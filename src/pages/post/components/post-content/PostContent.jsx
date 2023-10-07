@@ -2,14 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { H2 } from '../../../../components';
 
-const PostContentContainer = ({
-  className,
-  id,
-  title,
-  imageUrl,
-  content,
-  publishedAt,
-}) => {
+const PostContentContainer = ({ className, post }) => {
+  const { id, title, imageUrl, content, publishedAt } = post;
   return (
     <div className={className}>
       <img src={imageUrl} alt={title} />

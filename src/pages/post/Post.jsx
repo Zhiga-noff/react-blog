@@ -15,7 +15,8 @@ const PostContainer = ({ className }) => {
 
   useEffect(() => {
     dispatch(loadPostAsyncAction(request, params.id));
-  }, []);
+    console.log(post);
+  }, [params]);
 
   return (
     <div className={className}>
