@@ -1,6 +1,5 @@
 import { Icon } from '../../../../components';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import { TableRow } from '../table-row-styled/TableRow';
 import { useState } from 'react';
 import { useServerRequest } from '../../../../hooks';
@@ -17,8 +16,6 @@ const UserRowContainer = ({
   const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
   const [initialRoleId, setInitialRoleId] = useState(userRoleId);
   const requestServer = useServerRequest();
-
-  const dispatch = useDispatch();
 
   const onRoleChange = ({ target }) => {
     setSelectedRoleId(Number(target.value));
