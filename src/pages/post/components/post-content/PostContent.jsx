@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { H2 } from '../../../../components';
 
 const PostContentContainer = ({ className, post }) => {
-  const { id, title, imageUrl, content, publishedAt } = post;
+  const { id, title, image_url: imageUrl, content, published_at: publishedAt } = post;
   return (
     <div className={className}>
       <img src={imageUrl} alt={title} />
