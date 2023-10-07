@@ -4,7 +4,7 @@ import { Footer, Header } from './components';
 import { Authorization, Post, Registration, Users } from './pages';
 
 const Page = styled.div`
-  padding: 120px 0;
+  padding: 120px 0 0;
 `;
 
 const AppColumn = styled.div`
