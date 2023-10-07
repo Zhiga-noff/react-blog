@@ -1,5 +1,7 @@
-export const getPost = async (id) => {
-  return await fetch(`http://localhost:3005/posts/${id}`).then((loadedRoles) =>
-    loadedRoles.json(),
-  );
+import { transformPost } from '../transformers';
+
+export const getPost = (id) => {
+  return fetch(`http://localhost:3005/posts/${id}`)
+    .then((loadedPost) => loadedPost.json())
+    .then((loadedPost) => loadedPost && transformPost(loadedPost));
 };

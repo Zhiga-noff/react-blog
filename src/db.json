@@ -27,6 +27,13 @@
       "registered_at": "2040-07-06 20:19",
       "role_id": 0,
       "id": "5Hfdiif"
+    },
+    {
+      "login": "admin",
+      "password": "11421142",
+      "registered_at": "2061-03-01 12:28",
+      "role_id": 2,
+      "id": "-S-ZFgV"
     }
   ],
   "role": [

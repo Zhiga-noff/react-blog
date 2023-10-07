@@ -15,8 +15,7 @@ const PostContainer = ({ className }) => {
 
   useEffect(() => {
     dispatch(loadPostAsyncAction(request, params.id));
-    console.log(post);
-  }, [params]);
+  }, [dispatch, request]);
 
   return (
     <div className={className}>
@@ -26,4 +25,6 @@ const PostContainer = ({ className }) => {
   );
 };
 
-export const Post = styled(PostContainer)``;
+export const Post = styled(PostContainer)`
+  padding: 0 80px 40px;
+`;

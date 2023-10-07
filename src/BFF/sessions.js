@@ -1,5 +1,3 @@
-import { checkAccess } from './utils';
-
 export const sessions = {
   list: {},
   create(user) {
