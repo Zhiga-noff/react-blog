@@ -15,14 +15,14 @@ const PostContainer = ({ className }) => {
 
   useEffect(() => {
     dispatch(loadPostAsyncAction(request, params.id));
-  }, [dispatch, request]);
+  }, [dispatch, request, params.id]);
 
-  console.log(post);
+  // console.log(post);
 
   return (
     <div className={className}>
       <PostContent post={post} />
-      <Comments comments={post.comments} />
+      <Comments comments={post.comments} postId={post.id} />
     </div>
   );
 };

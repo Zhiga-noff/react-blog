@@ -48,4 +48,8 @@ export const PostContent = styled(PostContentContainer)`
     display: flex;
     align-items: center;
   }
+
+  & .post-text {
+    font-size: 18px;
+  }
 `;

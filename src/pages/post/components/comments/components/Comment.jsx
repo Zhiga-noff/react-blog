@@ -15,7 +15,7 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
           {publishedAt}
         </div>
       </div>
-      <div className="comment">{content}</div>
+      <div className="comment-text">{content}</div>
     </div>
   );
 };

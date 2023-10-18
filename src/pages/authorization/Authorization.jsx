@@ -65,6 +65,7 @@ const AuthorizationContainer = ({ className }) => {
         return;
       }
       dispatch(setUserAction(response));
+      sessionStorage.setItem('userData', JSON.stringify(response));
     });
   };
 
