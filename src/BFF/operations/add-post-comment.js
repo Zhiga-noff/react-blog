@@ -4,7 +4,6 @@ import { sessions } from '../sessions';
 
 export const addPostComment = async (userSession, postId, userId, content) => {
   const accessRoles = [ROLE.ADMIN, ROLE.MODERATOR, ROLE.READER];
-  console.log(postId, userId, content, userSession);
   if (!sessions.access(userSession, accessRoles)) {
     return {
       error: 'Доступ запрещен',
